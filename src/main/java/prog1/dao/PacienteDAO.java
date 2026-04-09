@@ -15,12 +15,12 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
   // private Connection conn = null;
 
   private static final String SQL_INSERT =
-      "INSERT INTO paciente (nombre, apellido, dni) " +
+      "INSERT INTO paciente (nombre, telefono, dni) " +
           "VALUES (?, ?, ?)";
 
   private static final String SQL_UPDATE =
       "UPDATE paciente SET " +
-          "nombre = ?, apellido = ?, dni = ? " +
+          "nombre = ?, telefono = ?, dni = ? " +
           "WHERE id = ?";
 
   private static final String SQL_DELETE =
@@ -42,9 +42,9 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
 
       while (rs.next()) {
         Paciente paciente = new Paciente();
-        paciente.setId(rs.getInt("id"));
+        paciente.setNroPaciente(rs.getInt("id"));
         paciente.setNombre(rs.getString("nombre"));
-        paciente.setApellido(rs.getString("apellido"));
+        paciente.setTelefono(String.valueOf(rs.getInt("telefono")));
         // NOTA: Usar rs.getDouble() si 'precio' es DECIMAL/DOUBLE en la DB.
         paciente.setDni(rs.getString("DNI"));
         listaPacientes.add(paciente);
@@ -67,7 +67,7 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
          PreparedStatement pst = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
       pst.setString(1, paciente.getNombre());
-      pst.setString(2, paciente.getApellido());
+      pst.setInt(2, paciente.getTelefono());
       pst.setString(3, paciente.getDni());
 
 
@@ -76,8 +76,8 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
       // Obtener el ID que la base de datos acaba de asignar
       try (ResultSet rs = pst.getGeneratedKeys()) {
         if (rs.next()) {
-          paciente.setId(rs.getInt(1));
-          System.out.println("Paciente insertado con ID: " + paciente.getId());
+          paciente.setNroPaciente(rs.getInt(1));
+          System.out.println("Paciente insertado con ID: " + paciente.getNroPaciente());
         }
       }
 
@@ -99,19 +99,19 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
 
       // Parámetros de actualización
       pst.setString(1, paciente.getNombre());
-      pst.setString(2, paciente.getApellido());
+      pst.setInt(2, paciente.getTelefono());
       pst.setString(3, paciente.getDni());
 
       // Parámetro de la condición WHERE
-      pst.setInt(5, paciente.getId());
+      pst.setInt(5, paciente.getNroPaciente());
 
       int resultado = pst.executeUpdate();
       if (resultado == 0) {
-        System.out.println("Advertencia: No se encontró paciente con ID " + paciente.getId() + " para actualizar.");
+        System.out.println("Advertencia: No se encontró paciente con ID " + paciente.getNroPaciente() + " para actualizar.");
       }
 
     } catch (SQLException e) {
-      System.err.println("Error al actualizar el paciente con ID: " + paciente.getId());
+      System.err.println("Error al actualizar el paciente con ID: " + paciente.getNroPaciente());
       throw new RuntimeException(e);
     }
 
@@ -152,9 +152,9 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
       try (ResultSet rs = pst.executeQuery()) {
         if (rs.next()) {
           paciente = new Paciente();
-          paciente.setId(rs.getInt("id"));
+          paciente.setNroPaciente(rs.getInt("id"));
           paciente.setNombre(rs.getString("nombre"));
-          paciente.setApellido(rs.getString("apellido"));
+          paciente.setTelefono(rs.getString("telefono"));
           paciente.setDni(rs.getString("DNI"));
         }
       }

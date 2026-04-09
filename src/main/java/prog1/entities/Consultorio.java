@@ -31,23 +31,12 @@ public class Consultorio {
     // ---------------------------------------------------------------
     // Ejercicio 1 – b) agregarTurno: crea y agrega un nuevo turno
     // ---------------------------------------------------------------
-    public void agregarTurno(Date dia, String horario, Paciente paciente) {
-        Turno nuevo = new Turno(dia, horario, paciente);
+    public void agregarTurno(Date dia, String horario, int nroPaciente) {
+        Turno nuevo = new Turno(dia, horario, nroPaciente);
         turnos.add(nuevo);
     }
 
-    // ---------------------------------------------------------------
-    // Ejercicio 2 – cancelarTurnosPorDia
-    // Se cancelan todos los turnos cuyo día coincida con el parámetro.
-    // Se apoya en esMismoDia(Date, Date).
-    // ---------------------------------------------------------------
-    public void cancelarTurnosPorDia(Date dia) {
-        for (Turno t : turnos) {
-            if (!t.isCancelado() && esMismoDia(t.getDia(), dia)) {
-                t.setCancelado(true);
-            }
-        }
-    }
+
 
     /**
      * Devuelve true si dia1 y dia2 representan el mismo día calendario

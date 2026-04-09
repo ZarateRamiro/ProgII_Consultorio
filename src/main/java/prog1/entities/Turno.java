@@ -7,24 +7,24 @@ public class Turno {
     private int id;
     private Date dia;
     private String horario;   // ej: "09:00"
-    private Paciente paciente;
+    private int nroPaciente;
     private int nroConsultorio;
 
     public Turno() {}
 
-    public Turno(int id, Date dia, String horario, Paciente paciente) {
+    public Turno(int id, Date dia, String horario, int nroPaciente) {
         this.id = id;
         this.dia = dia;
         this.horario = horario;
-        this.paciente = paciente;
+        this.nroPaciente = nroPaciente;
 
     }
 
     // Constructor sin id (lo asigna la BD)
-    public Turno(Date dia, String horario, Paciente paciente) {
+    public Turno(Date dia, String horario, int nroPaciente) {
         this.dia = dia;
         this.horario = horario;
-        this.paciente = paciente;
+        this.nroPaciente = nroPaciente;
 
     }
 
@@ -37,8 +37,8 @@ public class Turno {
     public String getHorario() { return horario; }
     public void setHorario(String horario) { this.horario = horario; }
 
-    public Paciente getPaciente() { return paciente; }
-    public void setPaciente(Paciente paciente) { this.paciente = paciente; }
+    public int getNroPaciente() { return nroPaciente; }
+    public void setNroPaciente(int nroPaciente) { this.nroPaciente = nroPaciente; }
 
     public int getNroConsultorio() {
         return nroConsultorio;
@@ -51,7 +51,7 @@ public class Turno {
     @Override
     public String toString() {
         return "Turno[" + id + "] - " + dia + " " + horario
-                + " | Paciente: " + paciente
+                + " | Paciente: " + nroPaciente
                 + " | Numero del consultorio: " + nroConsultorio;
     }
 }
