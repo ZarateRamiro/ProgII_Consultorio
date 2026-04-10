@@ -12,7 +12,7 @@ public class Consultorio {
 
     private int id;
     private int numero;
-    private String medioco;
+    private String medico;
 
     // a) La lista de turnos se inicializa vacía en el constructor
     private List<Turno> turnos;
@@ -21,10 +21,10 @@ public class Consultorio {
         this.turnos = new ArrayList<>();
     }
 
-    public Consultorio(int id, int numero, String medioco) {
+    public Consultorio(int id, int numero, String medico) {
         this.id = id;
         this.numero = numero;
-        this.medioco = medioco;
+        this.medico = medico;
         this.turnos = new ArrayList<>();   // a) inicialización vacía
     }
 
@@ -63,9 +63,19 @@ public class Consultorio {
     public int getNumero() { return numero; }
     public void setNumero(int numero) { this.numero = numero; }
 
-    public String getMedioco() { return medioco; }
-    public void setMedioco(String medioco) { this.medioco = medioco; }
+    public String getMedico() { return medico; }
+    public void setMedico(String medico) { this.medico = medico; }
 
     public List<Turno> getTurnos() { return turnos; }
     public void setTurnos(List<Turno> turnos) { this.turnos = turnos; }
+
+    @Override
+    public String toString() {
+        return "Consultorio{" +
+            "id=" + id +
+            ", numero=" + numero +
+            ", medico='" + medico + '\'' +
+            ", turnos=" + turnos +
+            '}';
+    }
 }

@@ -1,7 +1,6 @@
 package prog1.dao;
 
 import prog1.entities.Consultorio;
-import prog1.entities.Paciente;
 import prog1.interfaces.AdmConnexion;
 import prog1.interfaces.DAO;
 
@@ -41,7 +40,7 @@ public class ConsultorioDAO implements AdmConnexion, DAO<Consultorio, Integer> {
         Consultorio consultorio = new Consultorio();
         consultorio.setId(rs.getInt("id"));
         consultorio.setNumero(rs.getInt("numero"));
-        consultorio.setMedioco(rs.getString("descripcion"));
+        consultorio.setMedico(rs.getString("descripcion"));
         listaConsultorio.add(consultorio);
       }
 
@@ -62,7 +61,7 @@ public class ConsultorioDAO implements AdmConnexion, DAO<Consultorio, Integer> {
          PreparedStatement pst = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
       pst.setInt(1, consultorio.getNumero());
-      pst.setString(2, consultorio.getMedioco());
+      pst.setString(2, consultorio.getMedico());
 
 
 
@@ -94,7 +93,7 @@ public class ConsultorioDAO implements AdmConnexion, DAO<Consultorio, Integer> {
          PreparedStatement pst = conn.prepareStatement(SQL_UPDATE)) {
 
       pst.setInt(1, consultorio.getNumero());
-      pst.setString(2, consultorio.getMedioco());
+      pst.setString(2, consultorio.getMedico());
 
 
 
@@ -153,7 +152,7 @@ public class ConsultorioDAO implements AdmConnexion, DAO<Consultorio, Integer> {
           consultorio = new Consultorio();
           consultorio.setId(rs.getInt("id"));
           consultorio.setNumero(rs.getInt("numero de consultorio"));
-          consultorio.setMedioco(rs.getString("medico"));
+          consultorio.setMedico(rs.getString("medico"));
         }
       }
 
