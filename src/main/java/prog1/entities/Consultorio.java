@@ -36,6 +36,10 @@ public class Consultorio {
         turnos.add(nuevo);
     }
 
+    public void cancelarTurnosPorDia(Date fecha) {
+        turnos.removeIf(turno -> esMismoDia(turno.getDia(), fecha));
+    }
+
 
 
     /**

@@ -12,22 +12,22 @@ import java.util.List;
 public class TurnoDAO implements AdmConnexion, DAO<Turno, Integer> {
 
   private static final String SQL_INSERT =
-      "INSERT INTO paciente (dia, horario, id_paciente, id_consultorio) " +
+      "INSERT INTO turno (dia, horario, id_paciente, id_consultorio) " +
           "VALUES (?, ?, ?, ?)";
 
   private static final String SQL_UPDATE =
-      "UPDATE paciente SET " +
+      "UPDATE turno SET " +
           "dia = ?, horario = ?, id_paciente = ?, id_consultorio = ? " +
           "WHERE id = ?";
 
   private static final String SQL_DELETE =
-      "DELETE FROM paciente WHERE id = ?";
+      "DELETE FROM turno WHERE id = ?";
 
   private static final String SQL_GETALL =
-      "SELECT * FROM paciente ORDER BY dia";
+      "SELECT * FROM turno ORDER BY dia";
 
   private static final String SQL_GETBYID =
-      "SELECT * FROM paciente WHERE id = ?";
+      "SELECT * FROM turno WHERE id = ?";
 
   @Override
   public List<Turno> getAll() {
@@ -43,7 +43,7 @@ public class TurnoDAO implements AdmConnexion, DAO<Turno, Integer> {
         Turno turno = new Turno();
         turno.setId(rs.getInt("id"));
         turno.setDia(rs.getDate("dia"));
-        turno.setHorario(rs.getString("Horario"));
+        turno.setHorario(rs.getString("horario"));
         turno.setId_paciente(rs.getInt("id_paciente"));
         turno.setId_consultorio(rs.getInt("id_consultorio"));
         listaTurno.add(turno);
@@ -106,11 +106,11 @@ public class TurnoDAO implements AdmConnexion, DAO<Turno, Integer> {
 
       int resultado = pst.executeUpdate();
       if (resultado == 0) {
-        System.out.println("Advertencia: No se encontró paciente con ID " + turno.getId() + " para actualizar.");
+        System.out.println("Advertencia: No se encontró turno con ID " + turno.getId() + " para actualizar.");
       }
 
     } catch (SQLException e) {
-      System.err.println("Error al actualizar el paciente con ID: " + turno.getId());
+      System.err.println("Error al actualizar el turno con ID: " + turno.getId());
       throw new RuntimeException(e);
     }
 

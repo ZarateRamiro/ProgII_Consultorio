@@ -44,7 +44,7 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
         Paciente paciente = new Paciente();
         paciente.setNroPaciente(rs.getInt("id"));
         paciente.setNombre(rs.getString("nombre"));
-        paciente.setTelefono(String.valueOf(rs.getInt("telefono")));
+        paciente.setTelefono(rs.getInt("telefono"));
         // NOTA: Usar rs.getDouble() si 'precio' es DECIMAL/DOUBLE en la DB.
         paciente.setDni(rs.getString("DNI"));
         listaPacientes.add(paciente);
@@ -103,7 +103,7 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
       pst.setString(3, paciente.getDni());
 
       // Parámetro de la condición WHERE
-      pst.setInt(5, paciente.getNroPaciente());
+      pst.setInt(4, paciente.getNroPaciente());
 
       int resultado = pst.executeUpdate();
       if (resultado == 0) {
@@ -154,7 +154,7 @@ public class PacienteDAO implements AdmConnexion, DAO<Paciente, Integer> {
           paciente = new Paciente();
           paciente.setNroPaciente(rs.getInt("id"));
           paciente.setNombre(rs.getString("nombre"));
-          paciente.setTelefono(rs.getString("telefono"));
+          paciente.setTelefono(rs.getInt("telefono"));
           paciente.setDni(rs.getString("DNI"));
         }
       }

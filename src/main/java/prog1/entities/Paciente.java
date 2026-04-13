@@ -23,7 +23,7 @@ public class Paciente {
     public void setNombre(String nombre) { this.nombre = nombre; }
 
     public int getTelefono() { return telefono; }
-    public void setTelefono(String apellido) { this.telefono = telefono; }
+    public void setTelefono(int telefono) { this.telefono = this.telefono; }
 
     public String getDni() { return dni; }
     public void setDni(String dni) { this.dni = dni; }
